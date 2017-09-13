@@ -14,3 +14,34 @@
 // dans dist/index.html
 // en transformant les 2 balises scripts
 // par celle de bundle.js (String.prototype.replace)
+const path = require('path');
+const util = require('util');
+const Promise = require('bluebird');
+const fs = Promise.promisifyAll(require('fs'));
+
+const distDir = path.resolve(__dirname + '/dist');
+const jsFiles = [
+    path.resolve(__dirname + '/src/js/horloge.js'),
+    path.resolve(__dirname + '/src/js/main.js')
+];
+const distJs = path.resolve(__dirname + '/dist/bundle.js');
+const htmlFile = path.resolve(__dirname + '/src/index.html');
+const distHtml = path.resolve(__dirname + '/dist/index.html');
+
+fs.statAsync(distDir)
+    .catch(err => fs.mkdirAsync(distDir))
+    .then(() => fs.readFileAsync(jsFiles[0]))
+    .then(data => fs.appendFileAsync(distJs, data))
+    .then(() => fs.readFileAsync(jsFiles[1]))
+    .then(data => fs.appendFileAsync(distJs, data))
+    .then(() => fs.readFileAsync(htmlFile))
+    .then(data => {
+        let str = data.toString();
+        let regexp = /<script .*><\/script>/gm;
+        str = str.replace(regexp, '')
+        str = str.replace('</body>', '<script src="bundle.js"></script></body>')
+
+        return fs.writeFileAsync(distHtml, str);
+    })
+    .then(() => console.log('Build done'));
+
