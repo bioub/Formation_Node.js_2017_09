@@ -4,6 +4,8 @@ setTimeout(function() {
 
 console.log('after setTimeout');
 
+const prenoms = ['Romain', 'Jean'];
+
 Array.prototype.forEachAsync = function(cb) {
     const savePrenom = function(prenom) {
         return function() {
@@ -16,7 +18,7 @@ Array.prototype.forEachAsync = function(cb) {
     }
 };
 
-['Romain', 'Jean'].forEachAsync(function(prenom) {
+prenoms.forEachAsync(function(prenom) {
     console.log(prenom);
 });
 

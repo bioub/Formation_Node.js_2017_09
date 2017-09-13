@@ -7,5 +7,5 @@
 const addition = (a, b) => a + b;
 
 for (let i=0; i<10; i++) {
-    console.log(addition(i, i));
+  console.log(addition(i, i));
 }

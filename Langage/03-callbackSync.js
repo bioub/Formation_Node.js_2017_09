@@ -5,6 +5,9 @@
 console.log('after forEach');
 
 const setTimeoutSync = function (cb, delay) {
+  if (typeof cb !== 'function') {
+    throw new Error('cb must be a function');
+  }
   const debut = Date.now();
 
   while (debut + delay < Date.now()) {}

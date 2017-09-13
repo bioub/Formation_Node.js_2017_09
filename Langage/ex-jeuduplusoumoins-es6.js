@@ -1,3 +1,5 @@
+// 1 - Ne jamais utiliser var
+// 2 - method properties
 const Random = {
   get: function () {
     return Math.random();
@@ -22,8 +24,12 @@ const Random = {
 
 const readline = require('readline');
 
+// 3 - Utiliser class
+// 4 - {} dans un default params
 const Jeu = function(options) {
   options = options || {};
+
+  // Destructurer object avec default params
   const min = options.min || 0;
   const max = (options.max !== undefined) ? options.max : 100;
 
@@ -38,6 +44,7 @@ const Jeu = function(options) {
 
 Jeu.prototype.jouer = function() {
   if (this._essais.length) {
+    // Template string (template literal)
     console.log('Vous avez déjà joué : ' + this._essais.join(' | '));
   }
 
@@ -45,6 +52,7 @@ Jeu.prototype.jouer = function() {
 
     const entierSaisi = parseInt(answer);
 
+    // (Number.isNaN)
     if (isNaN(entierSaisi)) {
       console.error('Erreur : il faut saisir un nombre');
       return this.jouer();
