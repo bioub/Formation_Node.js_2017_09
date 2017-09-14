@@ -9,6 +9,13 @@ const server = http.createServer((req, res) => {
       res.setHeader('Content-type', 'application/json'); // MIME Type
       res.write(JSON.stringify({msg: 'Hello'}));
       break;
+    case '/hello.html':
+      res.send(`
+      <!Doctype html>
+<body>
+
+</body>`);
+      break;
     default:
       res.statusCode = 404;
       res.write('404 Not Found');

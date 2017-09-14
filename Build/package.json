@@ -1,5 +1,15 @@
 {
   "dependencies": {
-    "bluebird": "^3.5.0"
+    "bluebird": "^3.5.0",
+    "del": "^3.0.0"
+  },
+  "devDependencies": {
+    "http-server": "^0.10.0"
+  },
+  "scripts": {
+    "del": "rimraf dist",
+    "build": "npm run del && node build.js --minify",
+    "serve:dev": "hs src -p 3000",
+    "test": "mocha"
   }
 }

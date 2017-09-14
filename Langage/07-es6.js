@@ -33,6 +33,7 @@ var clients = {
 var prenoms = ['Romain', 'Eric'];
 var romain = prenoms[0];
 var eric = prenoms[1];
+var [romain, eric] = prenoms;
 
 // Spread operator (sur un tableau)
 var autrePrenoms = [...prenoms];

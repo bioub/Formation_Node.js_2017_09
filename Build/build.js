@@ -17,6 +17,7 @@
 const path = require('path');
 const util = require('util');
 const Promise = require('bluebird');
+const del = require('del');
 const fs = Promise.promisifyAll(require('fs'));
 
 const distDir = path.resolve(__dirname + '/dist');
@@ -28,7 +29,8 @@ const distJs = path.resolve(__dirname + '/dist/bundle.js');
 const htmlFile = path.resolve(__dirname + '/src/index.html');
 const distHtml = path.resolve(__dirname + '/dist/index.html');
 
-fs.statAsync(distDir)
+del('dist')
+    .then(() => fs.statAsync(distDir))
     .catch(err => fs.mkdirAsync(distDir))
     .then(() => fs.readFileAsync(jsFiles[0]))
     .then(data => fs.appendFileAsync(distJs, data))
@@ -37,9 +39,9 @@ fs.statAsync(distDir)
     .then(() => fs.readFileAsync(htmlFile))
     .then(data => {
         let str = data.toString();
-        let regexp = /<script .*><\/script>/gm;
+        let regexp = /<script *><\/script>/gm;
         str = str.replace(regexp, '')
-        str = str.replace('</body>', '<script src="bundle.js"></script></body>')
+        str = str.replace('</body>',. '<script src="bundle.js"></script></body>')
 
         return fs.writeFileAsync(distHtml, str);
     })
