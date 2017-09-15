@@ -67,6 +67,10 @@ app.get('/api/contacts/:id', auth, (req, res, next) => {
   res.json(contact);
 });
 
+// DELETE /api/contacts/:id
+
+// UPDATE /api/contacts/:id
+
 app.use('/api', (req, res) => {
   res.statusCode = 404;
   res.json({msg: req.msg || 'Not found'});

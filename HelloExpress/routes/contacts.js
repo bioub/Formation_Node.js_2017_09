@@ -12,6 +12,19 @@ router.get('/', function(req, res, next) {
         .catch(next);
 });
 
+router.get('/add', (req, res, next) => {
+    res.render('contacts/add');
+});
+
+router.post('/add', (req, res, next) => {
+    const contact = new Contact(req.body);
+    contact.save()
+        .then(contact => {
+            res.redirect('/contacts');
+        })
+        .catch(next);
+});
+
 router.get('/:id', function(req, res, next) {
     const id = req.params.id;
 
@@ -24,5 +37,7 @@ router.get('/:id', function(req, res, next) {
         })
         .catch(next);
 });
+
+
 
 module.exports = router;
