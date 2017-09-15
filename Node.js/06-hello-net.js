@@ -10,7 +10,7 @@ server.on('connection', (socket) => {
   });
 });
 
-server.on('listening', () => {
+server.once('listening', () => {
   console.log('listening');
 });
 

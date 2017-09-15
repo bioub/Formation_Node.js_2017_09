@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "async": "^2.5.0",
+    "body-parser": "^1.18.1",
     "del": "^3.0.0",
     "express": "^4.15.4",
     "fs-extra": "^4.0.2"

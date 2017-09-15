@@ -9,6 +9,10 @@ const server = http.createServer((req, res) => {
       res.setHeader('Content-type', 'application/json'); // MIME Type
       res.write(JSON.stringify({msg: 'Hello'}));
       break;
+    case '/redirect-google':
+      res.statusCode = 302;
+      res.setHeader('Location', 'http://www.google.fr/');
+      break;
     case '/hello.html':
       res.send(`
       <!Doctype html>

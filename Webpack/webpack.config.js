@@ -4,7 +4,7 @@ module.exports = {
   entry: './src/js/main.js',
   output: {
     path: __dirname + '/dist',
-    filename: 'bundle.js',
+    filename: 'bundle.[hash].js',
   },
   plugins: [new HtmlWebpackPlugin({
     template: './src/index.html'

@@ -21,7 +21,7 @@ app.get('/api/contacts', (req, res) => {
 // Sur la requête GET /api/contacts/123
 // répondre en JSON le contact 123
 // {"prenom": "Jean", "nom": "Dupont"}
-app.get('/api/contacts/:id', (req, res) => {
+app.get('/api/contacts/:id', (req, res, next) => {
   const id = req.params.id;
 
   const contact = contacts.find(c => c.id === id);

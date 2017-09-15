@@ -41,7 +41,7 @@ del('dist')
         let str = data.toString();
         let regexp = /<script *><\/script>/gm;
         str = str.replace(regexp, '')
-        str = str.replace('</body>',. '<script src="bundle.js"></script></body>')
+        str = str.replace('</body>', '<script src="bundle.js"></script></body>')
 
         return fs.writeFileAsync(distHtml, str);
     })
